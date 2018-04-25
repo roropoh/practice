@@ -5,7 +5,7 @@ P1. Traverse a linked list
 import p0
 
 class Node(p0.Node):
-    def traverse():
+    def traverse(self):
         node = self
         while node != None:
             print(node.val)
