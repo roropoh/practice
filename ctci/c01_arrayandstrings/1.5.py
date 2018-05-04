@@ -3,22 +3,26 @@
 #   strings, write a function to check if they are one edit (or zero edits) away.
 
 def oneAway(str1, str2):
-    print "oneAway({0}, {1})".format(str1, str2)
-    hashmap = {}
-    if len(str1) + 1 != len(str2) or len(str1) - 1 != len(str2) or len(str1) != len(str2):
-        print len(str1)
-        print len(str2)
-    else:
+    len_diff = abs(len(str1) - len(str2))
+    if len_diff > 1:
         return False
-    if len(str1) > len(str2):
-        bigStr = str1
-        smallStr = str2
+    elif len_diff == 0:
+        difference_count = 0
+        for i in xrange(len(str1)):
+            if str1[i] != str2[i]:
+                difference_count += 1
+                if difference_count > 1:
+                    return False
+            return True
     else:
-        bigStr = str2
-        smallStr = str1
-    for i in bigStr:
-        hashmap[i] = 0
-    return True
+        if len(str1) > len(str2):
+            long, short = str1, str2
+        else:
+            long, short = str2, str1
+        for i in xrange(len(short)):
+            if short[i] not in long:
+                return False
+        return True
 
 print oneAway("pale", "ple")
 print oneAway("pales", "pale")
